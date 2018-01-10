@@ -9,10 +9,10 @@ RUN curl -s get.sdkman.io | bash
 RUN /bin/bash -c "source /root/.sdkman/bin/sdkman-init.sh && \
     sdk install java 8u151-oracle \
     sdk install groovy 2.4.9 && \
-    sdk install maven 3.5.2"
-
-
-RUN git clone https://github.com/DICE-UNC/jargon-training.git
-RUN git clone https://github.com/DICE-UNC/jargon.git
-
-RUN sh
+    sdk install maven 3.5.2 && \
+    git clone https://github.com/DICE-UNC/jargon-training.git && \
+    git clone https://github.com/DICE-UNC/jargon.git && \
+    cd jargon && \
+    mvn install -Dmaven.test.skip=true && \
+    cd .. && \
+    sh"
